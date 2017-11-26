@@ -1,6 +1,6 @@
 import {$, $$, browser, by, element, ElementArrayFinder, ElementFinder} from "protractor";
 import {ApplicationPage} from "./application.page";
-import {expect} from "../../features/support/expect";
+import {expect} from "../../../features/support/expect";
 import {AutomizyPage} from "./automizy.page";
 
 export class LoginPage {

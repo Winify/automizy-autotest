@@ -1,7 +1,7 @@
 import {$, $$, by, element, ElementFinder} from "protractor";
 import {promise} from "selenium-webdriver";
 
-export class RegistrationModule {
+export class RegistrationModal {
     private title: ElementFinder;
 
     private firstNameInput: ElementFinder;
@@ -26,6 +26,11 @@ export class RegistrationModule {
     }
 
     register(firstName: string, lastName: string, company: string, password: string) {
+        this.firstNameInput.sendKeys(firstName);
+        this.lastNameInput.sendKeys(lastName);
+        this.companyInput.sendKeys(company);
+        this.passwordInput.sendKeys(password);
 
+        this.finishedSpan.click();
     }
 }

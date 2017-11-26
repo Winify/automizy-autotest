@@ -1,5 +1,5 @@
-import {AutomizyPage} from "../../page_objects/pages/automizy.page";
-import {LoginPage} from "../../page_objects/pages/login.page";
+import {AutomizyPage} from "../../page_objects/pages/base/automizy.page";
+import {LoginPage} from "../../page_objects/pages/base/login.page";
 import {expect} from "../support/expect";
 
 export = function basicSteps() {
@@ -22,6 +22,13 @@ export = function basicSteps() {
     this.Given(/^the user is on the login page$/,
         function () {
             return this.loginPage = LoginPage.get();
+        }
+    );
+
+    this.Given(/^the user is logged in$/,
+        function () {
+            this.loginPage = LoginPage.get();
+            return this.applicationPage = this.loginPage.login(email, password);
         }
     );
 

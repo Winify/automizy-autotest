@@ -1,12 +1,15 @@
 import {expect} from "../support/expect";
+import {RegisterPage} from "../../page_objects/pages/base/register.page";
 
 export = function registrationSteps() {
 
     const email = 'wince.graics' + new Date().getTime() + '@gmail.com';
 
+    let registerPage: RegisterPage;
+
     this.When(/^s?he wants to see the trial version/,
         function () {
-            return this.registerPage = this.automizyPage.seeFreeTrialOptions();
+            return registerPage = this.automizyPage.seeFreeTrialOptions();
         }
     );
 
@@ -18,7 +21,7 @@ export = function registrationSteps() {
 
     this.When(/^s?he signs up on the free trial$/,
         function () {
-            return this.applicationPage = this.registerPage.signUp(email);
+            return this.applicationPage = registerPage.signUp(email);
         }
     );
 
@@ -41,7 +44,7 @@ export = function registrationSteps() {
 
     this.Then(/^s?he should see the registration form$/,
         function () {
-            expect(this.applicationPage.registrationModule.getTitle()).to.eventually.equal('Personalize your account!');
+            expect(this.applicationPage.registrationModal.getTitle()).to.eventually.equal('Personalize your account!');
         }
     );
 
