@@ -1,12 +1,21 @@
 import {RegistrationModule} from "../modules/registration.module";
 import {$, browser, by, ElementFinder} from "protractor";
-import {promise, until} from "selenium-webdriver";
+import {promise} from "selenium-webdriver";
+import {expect} from "../../features/support/expect";
+import {AutomizyPage} from "./automizy.page";
 
 export class ApplicationPage {
 
     private userProfile: ElementFinder;
 
     registrationModule: RegistrationModule;
+
+    static assertPage() {
+        AutomizyPage.waitForElement(by.css('#automizy-menu-logo-normal'));
+
+        expect(browser.getCurrentUrl()).to.eventually.contain('automationDashboardPage');
+        expect($('#automizy-menu-logo-normal').isDisplayed()).to.eventually.equal(true);
+    }
 
     constructor() {
         this.userProfile = $('#automizy-header-dropdown-user');
@@ -19,12 +28,7 @@ export class ApplicationPage {
             firstName, lastName, company, password
         );
 
-        let driver = browser.driver;
-        return driver.wait(until.elementLocated(by.css('#automizy-instructions-notification')), 60 * 1000)
-            .then(function (element) {
-                    return driver.wait(until.elementIsVisible(element), 10 * 1000)
-                }
-            );
+        return AutomizyPage.waitForElement(by.css('#automizy-instructions-notification'));
     }
 
     isUserProfileDisplayed() {

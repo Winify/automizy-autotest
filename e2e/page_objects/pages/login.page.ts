@@ -1,5 +1,7 @@
-import {$$, browser, by, element, ElementArrayFinder, ElementFinder} from "protractor";
+import {$, $$, browser, by, element, ElementArrayFinder, ElementFinder} from "protractor";
 import {ApplicationPage} from "./application.page";
+import {expect} from "../../features/support/expect";
+import {AutomizyPage} from "./automizy.page";
 
 export class LoginPage {
     private loginSpan: ElementFinder;
@@ -8,6 +10,18 @@ export class LoginPage {
 
     private emailInputs: ElementArrayFinder;
     private passwordInputs: ElementArrayFinder;
+
+    static get() {
+        browser.get('https://login.automizy.com/');
+        this.assertPage();
+
+        return new LoginPage();
+    }
+
+    private static assertPage() {
+        AutomizyPage.waitForElement(by.css('#automizy-gate-logo'));
+        expect($('#automizy-gate-logo').isDisplayed()).to.eventually.equal(true);
+    }
 
     constructor() {
         this.loginSpan = element(by.cssContainingText('a span.automizy-button-text', 'Login'));
@@ -28,9 +42,29 @@ export class LoginPage {
         return new ApplicationPage();
     }
 
+    login(email: string, password: string) {
+        this.getVisibleEmailInput().sendKeys(email);
+        this.getVisiblePasswordInput().sendKeys(password);
+
+        this.loginSpan.click();
+
+        ApplicationPage.assertPage();
+
+        return new ApplicationPage();
+    }
+
     private getVisibleEmailInput() {
 
         return this.emailInputs.filter(function (element) {
+            return element.isDisplayed().then(function (displayed) {
+                return displayed === true;
+            })
+        }).first();
+    }
+
+    private getVisiblePasswordInput() {
+
+        return this.passwordInputs.filter(function (element) {
             return element.isDisplayed().then(function (displayed) {
                 return displayed === true;
             })

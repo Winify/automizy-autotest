@@ -2,6 +2,7 @@ import {$, browser, by, element, ElementFinder} from "protractor";
 import {RegisterPage} from "./register.page";
 import {LoginPage} from "./login.page";
 import {ApplicationPage} from "./application.page";
+import {promise, until} from "selenium-webdriver";
 
 export class AutomizyPage {
     private freeTrialLink: ElementFinder;
@@ -20,6 +21,15 @@ export class AutomizyPage {
             browser.close();
             browser.switchTo().window(handles[tabNumber]);
         });
+    }
+
+    static waitForElement(locator): promise.Promise<boolean> {
+        let driver = browser.driver;
+        return driver.wait(until.elementLocated(locator), 60 * 1000)
+            .then(function (element) {
+                    return driver.wait(until.elementIsVisible(element), 10 * 1000)
+                }
+            );
     }
 
     constructor() {

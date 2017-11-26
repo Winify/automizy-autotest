@@ -7,13 +7,13 @@
     "webdriver-update": "webdriver-manager update",
     "serenity-update": "serenity update",
     "report": "serenity run",
+    "preprotractor": "failsafe webdriver-update serenity-update",
     "protractor": "protractor ./protractor.conf.js",
     "focused": "npm run protractor -- --cucumberOpts.tags @Focus",
-    "preprotractor": "failsafe webdriver-update serenity-update",
     "test": "failsafe clean protractor report",
     "focused-test": "failsafe clean focused report"
   },
-  "author": "vinify",
+  "author": "winify",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.0.5",
