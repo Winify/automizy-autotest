@@ -14,6 +14,7 @@ export class ApplicationPage {
 
     static assertPage() {
         AutomizyPage.waitForElement(by.css('#automizy-menu-logo-normal'));
+        browser.sleep(500);
 
         expect(browser.getCurrentUrl()).to.eventually.contain('automationDashboardPage');
         expect($('#automizy-menu-logo-normal').isDisplayed()).to.eventually.equal(true);
