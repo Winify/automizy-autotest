@@ -2,8 +2,11 @@ import {$, $$, browser, by, element, ElementArrayFinder, ElementFinder} from "pr
 import {ApplicationPage} from "./application.page";
 import {expect} from "../../../features/support/expect";
 import {AutomizyPage} from "./automizy.page";
+import {promise} from "selenium-webdriver";
 
 export class LoginPage {
+
+    private loginForm: ElementFinder;
     private loginSpan: ElementFinder;
     private createFreeAccountSpan: ElementFinder;
     private createNewAccountSpan: ElementFinder;
@@ -20,16 +23,21 @@ export class LoginPage {
 
     private static assertPage() {
         AutomizyPage.waitForElement(by.css('#automizy-gate-logo'));
-        expect($('#automizy-gate-logo').isDisplayed()).to.eventually.equal(true);
+        expect($('div.automizy-gate-login-normal').isDisplayed()).to.eventually.equal(true);
     }
 
     constructor() {
+        this.loginForm = $('div.automizy-gate-login-normal');
         this.loginSpan = element(by.cssContainingText('a span.automizy-button-text', 'Login'));
         this.createFreeAccountSpan = element(by.cssContainingText('a span.automizy-button-text', 'Create my FREE account'));
         this.createNewAccountSpan = element(by.cssContainingText('a span.automizy-button-text', 'Create new account'));
 
         this.emailInputs = $$('input[name=email]');
         this.passwordInputs = $$('input[name=password]');
+    }
+
+    isLoginFormDisplayed(): promise.Promise<boolean> {
+        return this.loginForm.isDisplayed();
     }
 
     createAccount(email: string) {

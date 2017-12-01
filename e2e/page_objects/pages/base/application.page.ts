@@ -4,10 +4,12 @@ import {promise} from "selenium-webdriver";
 import {expect} from "../../../features/support/expect";
 import {AutomizyPage} from "./automizy.page";
 import {ContactsMenu} from "../../modules/menus/contacts.menu";
+import {LoginPage} from "./login.page";
 
 export class ApplicationPage {
 
     private userProfile: ElementFinder;
+    private logoutBtn: ElementFinder;
 
     registrationModal: RegistrationModal;
     contactsMenu: ContactsMenu;
@@ -22,6 +24,7 @@ export class ApplicationPage {
 
     constructor() {
         this.userProfile = $('#automizy-header-dropdown-user');
+        this.logoutBtn = $('.fa.fa-power-off');
 
         this.registrationModal = new RegistrationModal();
         this.contactsMenu = new ContactsMenu();
@@ -37,5 +40,12 @@ export class ApplicationPage {
 
     isUserProfileDisplayed() {
         return this.userProfile.isDisplayed();
+    }
+
+    logout() {
+        this.userProfile.click();
+        this.logoutBtn.click();
+
+        return new LoginPage()
     }
 }

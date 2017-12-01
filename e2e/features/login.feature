@@ -9,3 +9,8 @@ Feature: Logging in to Automizy
     Given the user is on the login page
     When she logs in
     Then she should have access to the application
+
+  Scenario: Logging out from the application
+    Given the user is logged in
+    When she logs out
+    Then she should see the login page
