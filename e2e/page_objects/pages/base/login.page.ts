@@ -61,21 +61,12 @@ export class LoginPage {
         return new ApplicationPage();
     }
 
-    private getVisibleEmailInput() {
 
-        return this.emailInputs.filter(function (element) {
-            return element.isDisplayed().then(function (displayed) {
-                return displayed === true;
-            })
-        }).first();
+    private getVisibleEmailInput() {
+        return AutomizyPage.getVisibleElementFrom(this.emailInputs);
     }
 
     private getVisiblePasswordInput() {
-
-        return this.passwordInputs.filter(function (element) {
-            return element.isDisplayed().then(function (displayed) {
-                return displayed === true;
-            })
-        }).first();
+        return AutomizyPage.getVisibleElementFrom(this.passwordInputs);
     }
 }

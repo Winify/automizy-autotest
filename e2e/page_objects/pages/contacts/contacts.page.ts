@@ -53,13 +53,7 @@ export class ContactsPage {
         return new ContactProfilePage();
     }
 
-    private getVisibleLookAtBtn() {
-
-        return this.lookAtBtns.filter(function (element) {
-            return element.isDisplayed().then(function (displayed) {
-                return displayed === true;
-            })
-        }).first();
+    private getVisibleLookAtBtn(): ElementFinder {
+        return AutomizyPage.getVisibleElementFrom(this.lookAtBtns);
     }
-
 }

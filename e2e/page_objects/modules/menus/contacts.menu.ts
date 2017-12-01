@@ -1,6 +1,7 @@
 import {browser, by, element, ElementFinder} from "protractor";
 import {ContactsPage} from "../../pages/contacts/contacts.page";
 import {CustomFieldsPage} from "../../pages/custom_fields/custom-fields.page";
+import {SegmentsPage} from "../../pages/segments/segments.page";
 
 export class ContactsMenu {
 
@@ -17,6 +18,13 @@ export class ContactsMenu {
         ContactsPage.assertPage();
 
         return new ContactsPage();
+    }
+
+    chooseSegments() {
+        this.clickOnSpan('Segments');
+        SegmentsPage.assertPage();
+
+        return new SegmentsPage();
     }
 
     chooseCustomFields() {

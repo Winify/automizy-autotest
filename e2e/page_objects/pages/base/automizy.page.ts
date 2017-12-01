@@ -1,4 +1,4 @@
-import {$, browser, by, element, ElementFinder} from "protractor";
+import {$, browser, by, element, ElementArrayFinder, ElementFinder} from "protractor";
 import {RegisterPage} from "./register.page";
 import {LoginPage} from "./login.page";
 import {ApplicationPage} from "./application.page";
@@ -39,6 +39,15 @@ export class AutomizyPage {
                     return driver.wait(until.elementTextContains(element, text), 10 * 1000)
                 }
             );
+    }
+
+    static getVisibleElementFrom(elementArray: ElementArrayFinder): ElementFinder {
+
+        return elementArray.filter(function (element) {
+            return element.isDisplayed().then(function (displayed) {
+                return displayed === true;
+            })
+        }).first();
     }
 
     constructor() {
