@@ -2,6 +2,9 @@
   "name": "automizy-autotest",
   "version": "1.0.0",
   "description": "Serenity demo project for the Automizy webpage.",
+  "author": "winify",
+  "license": "ISC",
+  "repository": "https://github.com/Winify/automizy-autotest.git",
   "scripts": {
     "clean": "rimraf target",
     "webdriver-update": "webdriver-manager update",
@@ -13,8 +16,6 @@
     "test": "failsafe clean protractor report",
     "focused-test": "failsafe clean focused report"
   },
-  "author": "winify",
-  "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.0.5",
     "@types/chai-as-promised": "^7.1.0",
