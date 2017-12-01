@@ -1,8 +1,8 @@
-import {expect} from "../support/expect";
 import {CustomFieldsPage} from "../../page_objects/pages/custom_fields/custom-fields.page";
+import {expect} from "../support/expect";
 import {by, element} from "protractor";
 
-export = function customFieldSteps() {
+export = function customFieldsSteps() {
 
     const fieldName = 'Custom Field ' + new Date().getTime();
 

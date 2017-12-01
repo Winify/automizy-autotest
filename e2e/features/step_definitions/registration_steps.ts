@@ -1,5 +1,5 @@
-import {expect} from "../support/expect";
 import {RegisterPage} from "../../page_objects/pages/base/register.page";
+import {expect} from "../support/expect";
 
 export = function registrationSteps() {
 

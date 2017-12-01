@@ -1,7 +1,6 @@
 import {AutomizyPage} from "../../page_objects/pages/base/automizy.page";
 import {LoginPage} from "../../page_objects/pages/base/login.page";
 import {expect} from "../support/expect";
-import {browser} from "protractor";
 
 export = function basicSteps() {
 

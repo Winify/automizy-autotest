@@ -1,7 +1,7 @@
 import {ContactsPage} from "../../page_objects/pages/contacts/contacts.page";
+import {ContactProfilePage} from "../../page_objects/pages/contacts/contact-profile.page";
 import {expect} from "../support/expect";
 import {$, by, element} from "protractor";
-import {ContactProfilePage} from "../../page_objects/pages/contacts/contact-profile.page";
 
 export = function contactsSteps() {
 
